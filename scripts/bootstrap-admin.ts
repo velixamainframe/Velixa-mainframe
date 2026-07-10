@@ -75,7 +75,7 @@ async function main() {
   const authKey = process.env.AUTH_SUPABASE_SERVICE_ROLE_KEY;
   const crmUrl = process.env.NEXT_PUBLIC_CRM_SUPABASE_URL;
   const crmKey = process.env.CRM_SUPABASE_SERVICE_ROLE_KEY;
-  const useSupabase = Boolean(authUrl && authKey && crmUrl && crmKey && process.env.DATA_BACKEND === "supabase");
+  const useSupabase = process.env.DATA_BACKEND === "supabase" && Boolean(authUrl && authKey && crmUrl && crmKey);
 
   if (!useSupabase) {
     const existing = await db.user.findUnique({ where: { email } });
